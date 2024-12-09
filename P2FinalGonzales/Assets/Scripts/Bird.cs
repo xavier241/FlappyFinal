@@ -5,9 +5,14 @@ using UnityEngine.XR;
 
 public class Bird : MonoBehaviour
 {
+    public float upforce = 200f;
+
+
     // Start is called before the first frame update
     private bool isDead = false;
     private Rigidbody2D rb2d;
+
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -21,9 +26,14 @@ public class Bird : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 rb2d.velocity = Vector2.zero;
-            
+                rb2d.AddForce(new Vector2(0, upforce));
+
             }
-        
+
         }
+    }
+    void OnCollsionEnter2D()
+    {
+        isDead = true;
     }
 }
